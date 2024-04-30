@@ -6,7 +6,7 @@ Use the provided Makefile to run the examples. There is no need to install SQLit
 
 - Run `installj.sh` prior to running the Java example for the first time
 
-While this project uses SQLite, it's trivial to adapt this to RDBMSes like MySQL and PostgreSQL.
+While this project uses SQLite, it's trivial to adapt this to relational database management systems (RDBMSs) like MySQL and PostgreSQL.
 
 - All SQL databases are accessed with a driver
 - While SQLite is an embedded database engine, MySQL and PostgreSQL are accessed via a server
@@ -19,7 +19,7 @@ While this project uses SQLite, it's trivial to adapt this to RDBMSes like MySQL
     - Otherwise you can specify that database in the `connect` method
 - Node.js requires separate libraries for MySQL and PostgreSQL
 
-This project uses simple SQL. More advanced projects may leverage SQL specific to a particular RDBMS. In those cases, there exist object-relational mapping (ORM) libraries that abstract away the actual SQL commands into RDBMS-independent function calls. Examples include:
+This project uses simple SQL. More advanced projects may leverage SQL specific to a particular RDBMS. In those cases, there exist object-relational mapping (ORM) libraries that abstract away the actual SQL commands into RDBMS-independent function calls. Also, given their name, they let you _map_ an _object_ (instance of a Java/Python/JavaScript class or Go struct) to a row of a table in a _relational_ DBMS. Examples include:
 
 - Hibernate (Java)
 - SQLAlchemy (Python)
