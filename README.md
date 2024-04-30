@@ -18,3 +18,10 @@ While this project uses SQLite, it's trivial to adapt this to RDBMSes like MySQL
     - You'll need to run a `CREATE DATABASE sample` command in lieu of opening a `sample.db` file
     - Otherwise you can specify that database in the `connect` method
 - Node.js requires separate libraries for MySQL and PostgreSQL
+
+This project uses simple SQL. More advanced projects may leverage SQL specific to a particular RDBMS. In those cases, there exist object-relational mapping (ORM) libraries that abstract away the actual SQL commands into RDBMS-independent function calls. Examples include:
+
+- Hibernate (Java)
+- SQLAlchemy (Python)
+- Sequelize (Node.js)
+- GORM (Go)
