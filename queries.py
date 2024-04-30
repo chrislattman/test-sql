@@ -8,7 +8,7 @@ cur.execute("DROP TABLE IF EXISTS customer_orders")
 cur.execute("DROP TABLE IF EXISTS customers")
 
 cur.execute("CREATE TABLE customers " +
-                "(customer_id INTEGER PRIMARY KEY, " + 
+                "(customer_id INTEGER PRIMARY KEY, " +
                 "name VARCHAR(50) NOT NULL, " +
                 "email_address VARCHAR(50) NOT NULL)")
 cur.execute("CREATE TABLE customer_orders " +
