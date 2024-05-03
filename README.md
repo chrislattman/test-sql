@@ -22,7 +22,7 @@ While this project uses SQLite, it's trivial to adapt this to relational databas
 
 This project uses simple SQL. More advanced projects may leverage SQL specific to a particular RDBMS. In those cases, there exist object-relational mapping (ORM) libraries that abstract away the actual SQL commands into RDBMS-independent function calls. Also, given their name, they let you _map_ an _object_ (instance of a Java/Python/JavaScript class or Go struct) to a row of a table in a _relational_ DBMS. Examples include:
 
-- Hibernate (Java)
+- Hibernate (Java, technically Jakarta EE)
 - SQLAlchemy (Python)
 - Sequelize (Node.js)
 - GORM (Go)
