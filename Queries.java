@@ -96,8 +96,8 @@ public class Queries {
             System.out.println("customers:");
             while (rs.next()) {
                 System.out.println(
-                    rs.getInt("customer_id") + "|" + 
-                    rs.getString("name") + "|" + 
+                    rs.getInt("customer_id") + "|" +
+                    rs.getString("name") + "|" +
                     rs.getString("email_address")
                 );
             }
@@ -107,9 +107,9 @@ public class Queries {
             System.out.println("customer_orders:");
             while (rs.next()) {
                 System.out.println(
-                    rs.getInt("customer_order_id") + "|" + 
-                    rs.getInt("customer_id") + "|" + 
-                    rs.getFloat("amount") + "|" + 
+                    rs.getInt("customer_order_id") + "|" +
+                    rs.getInt("customer_id") + "|" +
+                    rs.getFloat("amount") + "|" +
                     rs.getTimestamp("order_date")
                 );
             }
