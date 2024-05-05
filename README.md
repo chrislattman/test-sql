@@ -11,7 +11,7 @@ While this project uses SQLite, it's trivial to adapt this to relational databas
 - All SQL databases are accessed with a driver
 - While SQLite is an embedded database engine, MySQL and PostgreSQL are accessed via a server
     - The default MySQL port is 3306; the default PostgreSQL port is 5432
-    - This is also how other database engines like MongoDB work
+    - This is also how other database programs like MongoDB work, as well as in-memory data stores like Redis and Memcached
 - Java and Go use driver-agnostic frameworks, which makes it easy to switch between SQLite, MySQL, and PostgreSQL drivers
 - Python only has built-in support for SQLite
     - However, just changing `sqlite3` to either `mysql.connector` or `psycopg2` and adding additional arguments to the `connect` method (username and password for the server) allows you to easily use MySQL or PostgreSQL respectively, since the APIs are identical
