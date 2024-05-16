@@ -1,6 +1,5 @@
 java:
-	javac Queries.java
-	java -cp .:lib/* Queries
+	java -cp .:lib/* Queries.java
 
 python:
 	python3 queries.py
