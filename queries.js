@@ -49,12 +49,12 @@ if (info.changes !== 1) {
     console.log("DELETE Charlie failed");
 }
 
-let rows = db.prepare("SELECT * FROM customers").all();
+let rows = db.prepare("SELECT * FROM customers ORDER BY name").all();
 console.log("customers:");
 rows.forEach((row) => {
     console.log(
-        row.customer_id + "|" + 
-        row.name + "|" + 
+        row.customer_id + "|" +
+        row.name + "|" +
         row.email_address
     );
 });
@@ -63,9 +63,9 @@ rows = db.prepare("SELECT * FROM customer_orders").all();
 console.log("customer_orders:");
 rows.forEach((row) => {
     console.log(
-        row.customer_order_id + "|" + 
-        row.customer_id + "|" + 
-        row.amount + "|" + 
+        row.customer_order_id + "|" +
+        row.customer_id + "|" +
+        row.amount + "|" +
         row.order_date
     );
 });

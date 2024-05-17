@@ -130,7 +130,7 @@ func main() {
 		log.Fatalln("DELETE Charlie failed")
 	}
 
-	rows, err := db.Query("SELECT * FROM customers")
+	rows, err := db.Query("SELECT * FROM customers ORDER BY name")
 	if err != nil {
 		log.Fatal(err)
 	}

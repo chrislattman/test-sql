@@ -52,7 +52,7 @@ conn.commit()
 if cur.rowcount != 1:
     print("DELETE Charlie failed")
 
-res = cur.execute("SELECT * FROM customers")
+res = cur.execute("SELECT * FROM customers ORDER BY name")
 rows = res.fetchall()
 print("customers:")
 for row in rows:

@@ -59,6 +59,10 @@ public class Queries {
                 System.out.println("INSERT Alice failed");
             }
 
+            // SELECT FIRST customer_id ... retrieves the first result only
+            // SELECT DISTINCT name ... retrieves the first row for each distinct name
+            // ... WHERE email_address LIKE 'bob@%' retrieves all rows with email
+            // addresses starting with "bob@"
             cmd = "SELECT customer_id FROM customers WHERE email_address = 'bob@gmail.com'";
             rs = stmt.executeQuery(cmd);
             rs.next();
@@ -91,7 +95,8 @@ public class Queries {
                 System.out.println("DELETE Charlie failed");
             }
 
-            cmd = "SELECT * FROM customers";
+            // add DESC to the end of the query to sort in reverse order
+            cmd = "SELECT * FROM customers ORDER BY name";
             rs = stmt.executeQuery(cmd);
             System.out.println("customers:");
             while (rs.next()) {
