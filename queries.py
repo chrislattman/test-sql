@@ -1,5 +1,5 @@
-import sqlite3
 import datetime
+import sqlite3
 
 conn = sqlite3.connect("sample.db")
 cur = conn.cursor()
