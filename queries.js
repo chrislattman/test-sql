@@ -30,6 +30,22 @@ if (info.changes !== 1) {
     console.log("INSERT Alice failed");
 }
 
+const data = [
+    {name: "Daniel", email_address: "daniel@gmail.com"},
+    {name: "Frank", email_address: "frank@gmail.com"},
+];
+const insert = db.prepare("INSERT INTO customers (name, email_address) VALUES (@name, @email_address)");
+const insertMany = db.transaction((customers) => {
+    customers.forEach((customer) => {
+        insert.run(customer);
+    });
+});
+try {
+    insertMany(data);
+} catch {
+    console.log("INSERT Daniel and Frank failed");
+}
+
 let row = db.prepare("SELECT customer_id FROM customers WHERE email_address = 'bob@gmail.com'").get();
 info = db.prepare("INSERT INTO customer_orders (customer_id, amount, order_date) VALUES (?, ?, ?)")
          .run(row.customer_id, 13.95, new Date().toISOString());

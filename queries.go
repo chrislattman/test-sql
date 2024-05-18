@@ -82,18 +82,49 @@ func main() {
 		log.Fatalln("INSERT Alice failed")
 	}
 
+	tx, err := db.Begin()
+	if err != nil {
+		log.Fatal(err)
+	}
+	data := []struct {
+		name         string
+		emailAddress string
+	}{
+		{"Daniel", "daniel@gmail.com"},
+		{"Frank", "frank@gmail.com"},
+	}
+	stmt, err := tx.Prepare("INSERT INTO customers (name, email_address) VALUES (?, ?)")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, person := range data {
+		_, err = stmt.Exec(person.name, person.emailAddress)
+		if err != nil {
+			err = tx.Rollback()
+			if err != nil {
+				log.Fatal(err)
+			}
+			goto finished
+		}
+	}
+	err = tx.Commit()
+	if err != nil {
+		err = tx.Rollback()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+finished:
+	stmt.Close()
+
 	row := db.QueryRow("SELECT customer_id FROM customers WHERE email_address = 'bob@gmail.com'")
 	var customerId int
 	err = row.Scan(&customerId)
 	if err != nil {
 		log.Fatal(err)
 	}
-	pstmt, err := db.Prepare("INSERT INTO customer_orders (customer_id, amount, order_date) VALUES (?, ?, ?)")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer pstmt.Close()
-	res, err = pstmt.Exec(customerId, 13.95, time.Now().Format("2006-01-02 15:04:05"))
+	res, err = db.Exec("INSERT INTO customer_orders (customer_id, amount, order_date) VALUES (?, ?, ?)",
+		customerId, 13.95, time.Now().Format("2006-01-02 15:04:05"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -107,12 +138,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	pstmt2, err := db.Prepare("UPDATE customers SET email_address = 'alice@gmail.com' WHERE customer_id = ?")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer pstmt2.Close()
-	res, err = pstmt2.Exec(customerId)
+	res, err = db.Exec("UPDATE customers SET email_address = 'alice@gmail.com' WHERE customer_id = ?", customerId)
 	if err != nil {
 		log.Fatal(err)
 	}

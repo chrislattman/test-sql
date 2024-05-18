@@ -59,6 +59,23 @@ public class Queries {
                 System.out.println("INSERT Alice failed");
             }
 
+            String[][] data = {{"Daniel", "daniel@gmail.com"}, {"Frank", "frank@gmail.com"}};
+            conn.setAutoCommit(false);
+            pstmt = conn.prepareStatement(cmd);
+            for (int i = 0; i < data.length; i++) {
+                pstmt.setString(1, data[i][0]);
+                pstmt.setString(2, data[i][1]);
+                pstmt.addBatch();
+            }
+            try {
+                pstmt.executeBatch();
+                conn.commit();
+            } catch (SQLException e) {
+                conn.rollback();
+                System.out.println("INSERT Daniel and Frank failed");
+            }
+            pstmt.close();
+
             // SELECT FIRST customer_id ... retrieves the first result only
             // SELECT DISTINCT name ... retrieves the first row for each distinct name
             // ... WHERE email_address LIKE 'bob@%' retrieves all rows with email

@@ -33,6 +33,16 @@ conn.commit()
 if cur.rowcount != 1:
     print("INSERT Alice failed")
 
+data = [
+    ("Daniel", "daniel@gmail.com"),
+    ("Frank", "frank@gmail.com"),
+]
+try:
+    with conn:
+        conn.executemany("INSERT INTO customers (name, email_address) VALUES (?, ?)", data)
+except sqlite3.Error:
+    print("INSERT Daniel and Frank failed")
+
 res = cur.execute("SELECT customer_id FROM customers WHERE email_address = 'bob@gmail.com'")
 customer_id, = res.fetchone()
 cur.execute("INSERT INTO customer_orders (customer_id, amount, order_date) VALUES (?, ?, ?)", (customer_id, 13.95, datetime.datetime.now()))
