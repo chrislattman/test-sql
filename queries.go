@@ -29,6 +29,12 @@ func main() {
 	}
 	defer db.Close()
 
+	// ensures that an actual connection is made to the database
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	_, err = db.Exec("DROP TABLE IF EXISTS customer_orders")
 	if err != nil {
 		log.Fatal(err)
