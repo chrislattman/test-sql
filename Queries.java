@@ -107,6 +107,11 @@ public class Queries {
                 );
             }
 
+            cmd = "SELECT COUNT(*) as total FROM customers";
+            rs = stmt.executeQuery(cmd);
+            rs.next();
+            System.out.println(rs.getInt("total"));
+
             cmd = "SELECT * FROM customer_orders";
             rs = stmt.executeQuery(cmd);
             System.out.println("customer_orders:");

@@ -151,6 +151,14 @@ func main() {
 				customer.EmailAddress)
 	}
 
+	row = db.QueryRow("SELECT COUNT(*) as total FROM customers")
+	var total int
+	err = row.Scan(&total)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(total)
+
 	rows2, err := db.Query("SELECT * FROM customer_orders")
 	if err != nil {
 		log.Fatal(err)

@@ -58,6 +58,10 @@ print("customers:")
 for row in rows:
     print("|".join([str(x) for x in row]))
 
+res = cur.execute("SELECT COUNT(*) as total FROM customers")
+total, = res.fetchone()
+print(total)
+
 res = cur.execute("SELECT * FROM customer_orders")
 rows = res.fetchall()
 print("customer_orders:")

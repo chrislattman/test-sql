@@ -30,16 +30,16 @@ if (info.changes !== 1) {
     console.log("INSERT Alice failed");
 }
 
-let res = db.prepare("SELECT customer_id FROM customers WHERE email_address = 'bob@gmail.com'").get();
+let row = db.prepare("SELECT customer_id FROM customers WHERE email_address = 'bob@gmail.com'").get();
 info = db.prepare("INSERT INTO customer_orders (customer_id, amount, order_date) VALUES (?, ?, ?)")
-         .run(res.customer_id, 13.95, new Date().toISOString());
+         .run(row.customer_id, 13.95, new Date().toISOString());
 if (info.changes !== 1) {
     console.log("INSERT Bob order failed");
 }
 
-res = db.prepare("SELECT customer_id FROM customers WHERE email_address = 'alice@outlook.com'").get();
+row = db.prepare("SELECT customer_id FROM customers WHERE email_address = 'alice@outlook.com'").get();
 info = db.prepare("UPDATE customers SET email_address = 'alice@gmail.com' WHERE customer_id = ?")
-         .run(res.customer_id);
+         .run(row.customer_id);
 if (info.changes !== 1) {
     console.log("UPDATE Alice failed");
 }
@@ -58,6 +58,9 @@ rows.forEach((row) => {
         row.email_address
     );
 });
+
+row = db.prepare("SELECT COUNT(*) as total FROM customers").get();
+console.log(row.total);
 
 rows = db.prepare("SELECT * FROM customer_orders").all();
 console.log("customer_orders:");
