@@ -19,6 +19,9 @@ While this project uses SQLite, it's trivial to adapt this to relational databas
     - Otherwise you can specify that database in the `connect` method
 - Node.js requires separate libraries for MySQL and PostgreSQL
 - Since SQLite is written in C, the libsqlite3 library can be used
+- To view the contents of a .db file from the command line, use `sqlite3`
+- To view the contents of a .db file in a GUI, use DB Browser for SQLite
+- To view the contents of a .db file in a web browser, use [sqlite-web](https://github.com/coleifer/sqlite-web)
 
 This project uses simple SQL. More advanced projects may leverage SQL specific to a particular RDBMS. In those cases, there exist object-relational mapping (ORM) libraries that abstract away the actual SQL commands into RDBMS-independent function calls. Also, given their name, they let you _map_ an _object_ (instance of a Java/Python/JavaScript class or Go struct) to a row of a table in a _relational_ DBMS. Examples include:
 

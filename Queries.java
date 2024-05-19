@@ -74,6 +74,7 @@ public class Queries {
             System.out.println("INSERT Daniel and Frank failed");
         }
         pstmt.close();
+        conn.setAutoCommit(true);
 
         // SELECT FIRST customer_id ... retrieves the first result only
         // SELECT DISTINCT name ... retrieves the first row for each distinct name
